@@ -1,0 +1,141 @@
+/* ── Table wrapper ─────────────────────────────────────── */
+.table-wrapper {
+  flex: 1;
+  overflow: auto;
+  background: var(--surface);
+}
+
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.tx-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f8fafc;
+}
+
+.tx-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.tx-table th.sortable { cursor: pointer; }
+.tx-table th.sortable:hover { color: var(--accent); background: var(--accent-light); }
+
+.th-inner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sort-icon { font-style: normal; font-size: 13px; }
+.sort-icon.inactive { opacity: .3; }
+.sort-icon.active { color: var(--accent); }
+
+/* ── Rows ──────────────────────────────────────────────── */
+.tx-row td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.tx-row:hover td { background: var(--row-hover); }
+.tx-row:last-child td { border-bottom: none; }
+
+/* ── Column widths ─────────────────────────────────────── */
+.col-date       { width: 100px; white-space: nowrap; color: var(--text-muted); font-size: 13px; }
+.col-description { max-width: 280px; }
+.col-type       { width: 110px; }
+.col-amount     { width: 120px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.col-category   { width: 210px; }
+
+.desc-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 270px;
+}
+
+/* ── Amount colors ─────────────────────────────────────── */
+.amount-pos { color: var(--income); }
+.amount-neg { color: var(--expense); }
+
+/* ── Type badges ───────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: .3px;
+}
+.badge-green  { background: var(--income-bg);  color: var(--income);  border: 1px solid var(--income-border); }
+.badge-red    { background: var(--expense-bg); color: var(--expense); border: 1px solid var(--expense-border); }
+.badge-orange { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.badge-gray   { background: #f3f4f6; color: #4b5563; border: 1px solid #d1d5db; }
+
+/* ── Category pill & select ────────────────────────────── */
+.cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid #c7d2fe;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s, border-color .15s;
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cat-pill:hover {
+  background: #e0e7ff;
+  border-color: var(--accent);
+}
+
+.edit-icon {
+  font-size: 11px;
+  opacity: .6;
+  flex-shrink: 0;
+}
+
+.cat-select {
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--accent);
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  width: 190px;
+  cursor: pointer;
+}
+
+/* ── Empty ─────────────────────────────────────────────── */
+.empty-row {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
