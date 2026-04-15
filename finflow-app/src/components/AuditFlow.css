@@ -1,0 +1,547 @@
+/* ── AuditFlow — Upload / Idle screen ──────────────────────────────────── */
+
+.af-screen {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 32px 16px;
+}
+
+.af-card {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.af-logo {
+  font-size: 38px;
+  color: #0891b2;        /* teal accent for AuditFlow */
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.af-title {
+  margin: 0 0 4px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-heading);
+}
+
+.af-subtitle {
+  margin: 0 0 28px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ── Drop zone ─────────────────────────────────────────────────────────── */
+.af-drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px 24px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  background: var(--surface);
+  margin-bottom: 12px;
+}
+
+.af-drop-zone:hover,
+.af-drop-zone.drag-over {
+  border-color: #0891b2;
+  background: #ecfeff;
+}
+
+.af-drop-icon {
+  font-size: 32px;
+  line-height: 1;
+  color: #0891b2;
+  margin-bottom: 10px;
+}
+
+.af-drop-primary {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.af-drop-secondary {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.af-drop-link { color: #0891b2; font-weight: 600; }
+
+.af-drop-formats {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: .4px;
+}
+
+/* ── Error ────────────────────────────────────────────────────────────── */
+.af-error {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--expense);
+  background: var(--expense-bg);
+  border: 1px solid var(--expense-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+/* ── Hints ────────────────────────────────────────────────────────────── */
+.af-hints {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  text-align: left;
+}
+
+.af-hints-title {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--text-muted);
+}
+
+.af-hints-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.9;
+}
+
+/* ── Loading screen ───────────────────────────────────────────────────── */
+.af-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.af-loading-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.af-loading-label {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  min-height: 18px;
+}
+
+.af-progress-track {
+  width: 100%;
+  max-width: 360px;
+  height: 8px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.af-progress-bar {
+  height: 100%;
+  background: #0891b2;
+  border-radius: 99px;
+  transition: width .25s ease;
+}
+
+.af-progress-pct {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0891b2;
+}
+
+.af-ocr-note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Review layout ────────────────────────────────────────────────────── */
+.af-review {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Stats bar ────────────────────────────────────────────────────────── */
+.af-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.af-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.af-stat-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.af-stat-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.af-stat-file {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.af-stat-sep {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.af-income { color: var(--income) !important; }
+.af-expense { color: var(--expense) !important; }
+
+/* ── Toolbar ──────────────────────────────────────────────────────────── */
+.af-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.af-toolbar-left,
+.af-toolbar-center,
+.af-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.af-search {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  width: 200px;
+  transition: border-color .15s;
+}
+.af-search:focus { border-color: #0891b2; }
+
+.af-select {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  outline: none;
+}
+
+.af-sort-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.af-sort-btn {
+  padding: 5px 12px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.af-sort-btn:hover {
+  border-color: #0891b2;
+  color: #0891b2;
+}
+
+.af-sort-btn.active {
+  background: #ecfeff;
+  border-color: #0891b2;
+  color: #0e7490;
+  font-weight: 600;
+}
+
+.af-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Export / action buttons ──────────────────────────────────────────── */
+.af-btn {
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+}
+
+.af-btn-csv {
+  background: var(--income-bg);
+  border-color: var(--income-border);
+  color: var(--income);
+}
+.af-btn-csv:hover { background: #d1fae5; }
+
+.af-btn-xlsx {
+  background: #ecfeff;
+  border-color: #a5f3fc;
+  color: #0e7490;
+}
+.af-btn-xlsx:hover { background: #cffafe; }
+
+.af-btn-reset {
+  background: none;
+  border-color: #c7d2fe;
+  color: var(--accent);
+}
+.af-btn-reset:hover { background: var(--accent-light); }
+
+.af-btn-add {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
+}
+.af-btn-add:hover { background: #dcfce7; }
+
+.af-btn-delete {
+  background: var(--expense-bg);
+  border-color: var(--expense-border);
+  color: var(--expense);
+}
+.af-btn-delete:hover { background: #fee2e2; }
+
+/* ── Table ────────────────────────────────────────────────────────────── */
+.af-table-wrap {
+  flex: 1;
+  overflow: auto;
+}
+
+.af-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.af-table thead tr {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.af-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.af-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.af-table tbody tr {
+  cursor: pointer;
+}
+.af-table tbody tr:hover { background: var(--row-hover); }
+
+.af-row-income  { background: #fafffe; }
+.af-row-expense { background: #fffafa; }
+
+.af-row-selected,
+.af-row-selected.af-row-income,
+.af-row-selected.af-row-expense {
+  background: #eff6ff !important;
+  outline: 1px solid #bfdbfe;
+  outline-offset: -1px;
+}
+
+/* ── Checkbox column ──────────────────────────────────────────── */
+.af-th-check,
+.af-td-check {
+  width: 36px;
+  padding: 0 4px 0 14px !important;
+  text-align: center;
+}
+
+.af-checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: #0891b2;
+  cursor: pointer;
+}
+
+.af-td-date {
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+
+.af-td-desc {
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-heading);
+}
+
+.af-td-amount {
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ── Editable cells ───────────────────────────────────────────────────── */
+.af-editable {
+  display: inline-block;
+  min-width: 40px;
+  cursor: text;
+  border-radius: 3px;
+  padding: 2px 4px;
+  transition: background .12s;
+}
+
+.af-editable:hover {
+  background: #e0f2fe;
+  outline: 1px dashed #0891b2;
+}
+
+.af-inline-input {
+  border: 1.5px solid #0891b2;
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  min-width: 60px;
+}
+
+.af-desc-input {
+  width: 100%;
+  max-width: 320px;
+}
+
+.af-amount-input {
+  width: 90px;
+  text-align: right;
+}
+
+/* ── Type select ──────────────────────────────────────────────────────── */
+.af-type-select {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  outline: none;
+}
+.af-type-select:focus { border-color: #0891b2; }
+
+/* ── Category cell ────────────────────────────────────────────────────── */
+.af-cat-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.af-cat-select {
+  width: 100%;
+  max-width: 220px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  outline: none;
+}
+.af-cat-select:focus { border-color: #0891b2; }
+
+.af-cat-new-wrap {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Edit hint bar ────────────────────────────────────────────────────── */
+.af-edit-hint {
+  padding: 6px 20px;
+  background: #ecfeff;
+  border-bottom: 1px solid #a5f3fc;
+  font-size: 12px;
+  color: #0e7490;
+  flex-shrink: 0;
+}
+
+/* ── Amount column ────────────────────────────────────────────────────── */
+.af-th-amount { text-align: right; }
+
+/* ── Empty state ──────────────────────────────────────────────────────── */
+.af-empty {
+  text-align: center;
+  padding: 40px !important;
+  color: var(--text-muted);
+  font-style: italic;
+}
