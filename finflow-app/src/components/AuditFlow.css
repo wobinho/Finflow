@@ -340,6 +340,13 @@
 }
 .af-btn-xlsx:hover { background: #cffafe; }
 
+.af-btn-qbo {
+  background: #fef3c7;
+  border-color: #fcd34d;
+  color: #92400e;
+}
+.af-btn-qbo:hover { background: #fde68a; }
+
 .af-btn-reset {
   background: none;
   border-color: #c7d2fe;

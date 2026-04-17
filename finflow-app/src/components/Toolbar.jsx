@@ -9,6 +9,8 @@ export default function Toolbar({
   filterType, onFilterType,
   onBulkRecategorize,
   onExportCSV, onExportXLSX,
+  onExportCSVNoCategory, onExportXLSXNoCategory,
+  onExportQBO,
   resultCount, totalCount,
 }) {
   return (
@@ -56,11 +58,20 @@ export default function Toolbar({
         <button className="btn btn-ghost" onClick={onBulkRecategorize} title="Reset all categories to auto-detected">
           ↺ Re-categorize All
         </button>
-        <button className="btn btn-outline" onClick={onExportCSV}>
-          ↓ Export CSV
+        <button className="btn btn-outline" onClick={onExportCSV} title="CSV with category">
+          ↓ CSV
         </button>
-        <button className="btn btn-primary" onClick={onExportXLSX}>
-          ↓ Export XLSX
+        <button className="btn btn-outline" onClick={onExportCSVNoCategory} title="CSV without category">
+          ↓ CSV (no cat.)
+        </button>
+        <button className="btn btn-primary" onClick={onExportXLSX} title="XLSX with category">
+          ↓ XLSX
+        </button>
+        <button className="btn btn-primary" onClick={onExportXLSXNoCategory} title="XLSX without category">
+          ↓ XLSX (no cat.)
+        </button>
+        <button className="btn btn-outline" onClick={onExportQBO} title="QuickBooks IIF format">
+          ↓ QBO
         </button>
       </div>
     </div>

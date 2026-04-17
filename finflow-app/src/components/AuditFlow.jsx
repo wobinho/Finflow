@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useMemo } from 'react'
 import { parsePDF } from '../utils/pdfParser'
 import { autoCategorizeAll, CATEGORIES } from '../data/categorizer'
-import { auditExportToCSV, auditExportToXLSX } from '../utils/auditExporter'
+import { auditExportToCSV, auditExportToCSVNoCategory, auditExportToXLSX, auditExportToXLSXNoCategory, auditExportToQBO } from '../utils/auditExporter'
 import './AuditFlow.css'
 
 const fmt = (n) =>
@@ -461,12 +461,29 @@ export default function AuditFlow({
           </button>
 
           <button className="af-btn af-btn-csv"
-            onClick={() => auditExportToCSV(transactions, sortMode, fileName.replace('.pdf', ''))}>
+            onClick={() => auditExportToCSV(transactions, sortMode, fileName.replace('.pdf', ''))}
+            title="CSV with category">
             ↓ CSV
           </button>
+          <button className="af-btn af-btn-csv"
+            onClick={() => auditExportToCSVNoCategory(transactions, sortMode, fileName.replace('.pdf', ''))}
+            title="CSV without category">
+            ↓ CSV (no cat.)
+          </button>
           <button className="af-btn af-btn-xlsx"
-            onClick={() => auditExportToXLSX(transactions, sortMode, fileName.replace('.pdf', ''))}>
+            onClick={() => auditExportToXLSX(transactions, sortMode, fileName.replace('.pdf', ''))}
+            title="XLSX with category">
             ↓ XLSX
+          </button>
+          <button className="af-btn af-btn-xlsx"
+            onClick={() => auditExportToXLSXNoCategory(transactions, sortMode, fileName.replace('.pdf', ''))}
+            title="XLSX without category">
+            ↓ XLSX (no cat.)
+          </button>
+          <button className="af-btn af-btn-qbo"
+            onClick={() => auditExportToQBO(transactions, sortMode, fileName.replace('.pdf', ''))}
+            title="QuickBooks IIF format">
+            ↓ QBO
           </button>
           <button className="af-btn af-btn-reset" onClick={handleReset}>
             ↑ New PDF

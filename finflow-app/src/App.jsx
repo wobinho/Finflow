@@ -1,11 +1,11 @@
-import { useState, useMemo, useCallback, useRef } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { autoCategorizeAll } from './data/categorizer'
 import ImportScreen from './components/ImportScreen'
 import TransactionTable from './components/TransactionTable'
 import SummaryPanel from './components/SummaryPanel'
 import Toolbar from './components/Toolbar'
 import AuditFlow from './components/AuditFlow'
-import { exportToCSV, exportToXLSX } from './utils/exporter'
+import { exportToCSV, exportToXLSX, exportToCSVNoCategory, exportToXLSXNoCategory, exportToQBO } from './utils/exporter'
 import './App.css'
 
 // ── Shared tab nav ────────────────────────────────────────────────────────────
@@ -118,6 +118,33 @@ export default function App() {
   const [afSearch, setAfSearch]                 = useState('')
   const [afFilterType, setAfFilterType]         = useState('All')
 
+  // ── Privacy: wipe all transaction data when the tab/window closes ────────
+  useEffect(() => {
+    const clearAll = () => {
+      setTransactions(null)
+      setFileName('')
+      setSearch('')
+      setFilterCategory('All')
+      setFilterType('All')
+      setAfStage('idle')
+      setAfTransactions([])
+      setAfFileName('')
+      setAfPageCount(0)
+      setAfOcrPageCount(0)
+      setAfCustomCategories([])
+      setAfSortMode('original')
+      setAfSearch('')
+      setAfFilterType('All')
+    }
+    window.addEventListener('beforeunload', clearAll)
+    // pagehide fires on mobile and when bfcache takes the page
+    window.addEventListener('pagehide', clearAll)
+    return () => {
+      window.removeEventListener('beforeunload', clearAll)
+      window.removeEventListener('pagehide', clearAll)
+    }
+  }, [])
+
   // ── Derived ───────────────────────────────────────────────────────────────
   const net = summary.totalIncome - summary.totalExpense
   const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -225,7 +252,10 @@ export default function App() {
             onFilterType={setFilterType}
             onBulkRecategorize={handleBulkRecategorize}
             onExportCSV={() => exportToCSV(filtered)}
+            onExportCSVNoCategory={() => exportToCSVNoCategory(filtered)}
             onExportXLSX={() => exportToXLSX(filtered)}
+            onExportXLSXNoCategory={() => exportToXLSXNoCategory(filtered)}
+            onExportQBO={() => exportToQBO(filtered)}
             resultCount={filtered.length}
             totalCount={transactions.length}
           />
